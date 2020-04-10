@@ -1,0 +1,83 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{amro-common}
+\RequirePackage{decar-common}
+
+
+
+%%% Amro
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{lipsum}
+\usepackage{{tikz}}
+
+\definecolor{myBlueColor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{myGreyColor}{rgb}{0.5, 0.5, 0.5}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=myBlueColor, innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myBlueBox_0}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=black, innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myBlackBox_0}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=myGreyColor,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
+
+
+\newenvironment{myBlackBox}
+    {
+    \vspace{1em}
+    \begin{myBlackBox_0}
+    }
+    {\end{myBlackBox_0}}
+\newenvironment{myBlueBox}
+    {
+    \vspace{1em}
+    \begin{myBlueBox_0}
+    }
+    {\end{myBlueBox_0}}
+\newenvironment{myGreyBox}
+    {
+    \vspace{1em}
+    \begin{myGreyBox_0}
+    }
+    {\end{myGreyBox_0}}
+\usepackage{tcolorbox}
+
+\newtcolorbox{myBlueBoxShaded}{colback=myBlueColor,colframe=black}
+
+\newenvironment{mydefinition}[1][\unskip]{
+    \begin{myBlackBox}
+\begin{definition}[\emph{#1}]}{\end{definition}\end{myBlackBox}}
+
+\newenvironment{mytheorem}{
+    \begin{myBlackBox}
+\begin{theorem}}{\end{theorem}\end{myBlackBox}}
+
+\newenvironment{mytheoremarg}[1][\unskip]{
+    \begin{myBlackBox}
+\begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
+
+
+
+%% Probability
+\renewcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\uline}[1]{\underline{#1}}
+\newcommand{\mbfuline}[1]{\underline{\mbf{#1}}}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\pdf}[1]{{p}\left(#1\right)}
+\newcommand{\gaussian}[3]{e^{-\onehalf\norm{{#1}-{#2}}_{#3}^{2}}\xspace} % 1: Random variable, 2: mean, 3: Covariance
+\newcommand{\gaussianexp}[3]{\exp\left(-{\onehalf\norm{{#1}-{#2}}_{#3\inv}^{2}}\right)\xspace} % 1: Random variable, 2: mean, 3: Covariance
+
+\newcommand{\pSet}{\mathcal{P}} % power set
+\newcommand{\pCal}{\mathcal{P}} % power set 
+\newcommand{\rCal}{\mathcal{R}} % power set 
+\newcommand{\fCal}{\mathcal{F}} %F sigma algebra
+\newcommand{\comp}{\mathrm{C}} % set complement
+
+
+% Derivatives
+% Total derivative
+\newcommand{\td}[2]{\f{\dee #1}{\dee #2}\xspace}
+
+
+% Lie groups
+% DCM transposed
+\NewDocumentCommand{\dcmtrans}{ O{} }{\mbf{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
