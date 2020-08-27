@@ -1,16 +1,25 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
 \RequirePackage{decar-common}
+\RequirePackage{decar-dynamics}
+\RequirePackage{decar-lie}
+\RequirePackage{decar-post}
+\RequirePackage{amsmath,amsthm}
 
 
 
-%%% Amro
+%%% Packages
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{lipsum}
 \usepackage{{tikz}}
+\usepackage{pdfpages}
+\usepackage[normalem]{ulem}
 
+\RequirePackage{bbm} % Allos the use of \mathbbm for math mode
+
+% Box environments
 \definecolor{myBlueColor}{rgb}{0.122, 0.435, 0.698}
 \definecolor{myGreyColor}{rgb}{0.5, 0.5, 0.5}
 \newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=myBlueColor, innerleftmargin=6pt,
@@ -19,8 +28,6 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myBlueBox_0}
 innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myBlackBox_0}
 \newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=myGreyColor,innerleftmargin=6pt,
 innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
-
-
 \newenvironment{myBlackBox}
     {
     \vspace{1em}
@@ -47,37 +54,75 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     \begin{myBlackBox}
 \begin{definition}[\emph{#1}]}{\end{definition}\end{myBlackBox}}
 
+\newenvironment{myremark}{
+    \begin{myBlueBox}
+\begin{remark}}{\end{remark}\end{myBlueBox}}
+
 \newenvironment{mytheorem}{
     \begin{myBlackBox}
 \begin{theorem}}{\end{theorem}\end{myBlackBox}}
+
+\newenvironment{myproposition}{
+    \begin{myBlackBox}
+\begin{proposition}}{\end{proposition}\end{myBlackBox}}
 
 \newenvironment{mytheoremarg}[1][\unskip]{
     \begin{myBlackBox}
 \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
 
-
+% Operator that includes ifelse statement
+\newcommand{\myoperator}[2]{\ifthenelse{\equal{#2}{}}{}{#1\left(#2\right)}\xspace}
 
 %% Probability
 \renewcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
-\newcommand{\uline}[1]{\underline{#1}}
+% \renewcommand{\expect}[1]{\ifthenelse{\equal{#1}{}}{\mathbb{E}}{\mathbb{E}\left[#1\right]}\xspace}
+% \newcommand{\uline}[1]{\underline{#1}}
 \newcommand{\mbfuline}[1]{\underline{\mbf{#1}}}
-\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
-\newcommand{\pdf}[1]{{p}\left(#1\right)}
+\newcommand{\prob}[1]{\ifthenelse{\equal{#1}{}}{\mathbb{P}}{\mathbb{P}\left(#1\right)}\xspace}
+% \newcommand{\prob}[1]{\myoperator{\mathbb{P}}{#1}}
+\newcommand{\pdf}[1]{\ifthenelse{\equal{#1}{}}{f}{{f}\left(#1\right)}}
+% \newcommand{\pdf}[2]{\ifthenelse{\equal{#1}{}}{f_{#2}}{{f_{#2}}\left(#1\right)}}
+% \newcommand{\pdf}[1]{\myoperator{f}{#1}}
+\newcommand{\cdf}[1]{\ifthenelse{\equal{#1}{}}{F}{{F}\left(#1\right)}}
+\newcommand{\pmf}[1]{\ifthenelse{\equal{#1}{}}{p}{p\left(#1\right)}}
+% \newcommand{\pmf}[1]{\myoperator{p}{#1}}
+% Gaussian PDF expanded using e^
 \newcommand{\gaussian}[3]{e^{-\onehalf\norm{{#1}-{#2}}_{#3}^{2}}\xspace} % 1: Random variable, 2: mean, 3: Covariance
+% Gaussian PDF expanded using \exp
 \newcommand{\gaussianexp}[3]{\exp\left(-{\onehalf\norm{{#1}-{#2}}_{#3\inv}^{2}}\right)\xspace} % 1: Random variable, 2: mean, 3: Covariance
 
+\newcommand{\rv}[1]{\uline{#1}\xspace} % Random variable
+\newcommand{\mbfrv}[1]{\mbfuline{#1}} % mbf random variable
 \newcommand{\pSet}{\mathcal{P}} % power set
 \newcommand{\pCal}{\mathcal{P}} % power set 
 \newcommand{\rCal}{\mathcal{R}} % power set 
 \newcommand{\fCal}{\mathcal{F}} %F sigma algebra
 \newcommand{\comp}{\mathrm{C}} % set complement
-
-
+\renewcommand{\var}[1]{\operatorname{Var}\left[#1\right]}
+% Covariance
+\renewcommand{\cov}[1]{\operatorname{Cov}\left[#1\right]}
 % Derivatives
 % Total derivative
 \newcommand{\td}[2]{\f{\dee #1}{\dee #2}\xspace}
 
 
 % Lie groups
-% DCM transposed
+% DCM stuff
 \NewDocumentCommand{\dcmtrans}{ O{} }{\mbf{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
+\NewDocumentCommand{\dcmbartrans}{ O{} }{\mbfbar{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
+
+% Sectioning
+% End of example command
+\newcommand\xqed[1]{%
+  \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+  \quad\hbox{#1}}
+\newcommand\triqed{\xqed{$\triangle$}}
+
+% Common
+% \newcommand{\mbfbar}[1]{\bar{\mbf{#1}}}
+\newcommand{\diag}[1]{\ifthenelse{\equal{#1}{}}{\operatorname{diag}}{\operatorname{diag}\left(#1\right)}\xspace}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mbbm}[1]{\mathbbm{#1}}
+
+
