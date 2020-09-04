@@ -66,9 +66,14 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     \begin{myBlackBox}
 \begin{proposition}}{\end{proposition}\end{myBlackBox}}
 
+\newenvironment{myproperty}{
+    \begin{myBlackBox}
+\begin{property}}{\end{property}\end{myBlackBox}}
+
 \newenvironment{mytheoremarg}[1][\unskip]{
     \begin{myBlackBox}
 \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
+
 
 % Operator that includes ifelse statement
 \newcommand{\myoperator}[2]{\ifthenelse{\equal{#2}{}}{}{#1\left(#2\right)}\xspace}
