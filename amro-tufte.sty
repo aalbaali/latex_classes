@@ -102,6 +102,7 @@
 \@ifundefined{eg}{
     \newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace}
 }{}
+\newcommand{\etc}{\textit{e.\hairsp{}t.\hairsp{}c.}\xspace}
 \newcommand{\na}{\quad--}% used in tables for N/A cells
 \providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
 \newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}}
@@ -142,3 +143,101 @@
 \newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
 \newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
 \newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+
+
+
+
+%%%%%%%%%%%%% New formatting
+\setcounter{tocdepth}{1}
+
+\definecolor{blueMatlab}{rgb}{0, 0.4470, 0.7410}
+\definecolor{orangeMatlab}{rgb}{0.8500, 0.3250, 0.0980}
+\definecolor{greenMatlab}{rgb}{0.4660, 0.6740, 0.1880}
+\def\sectionfont{\sffamily\LARGE}
+
+\setcounter{secnumdepth}{2}
+
+% chapter format
+\titleformat{\chapter}%
+  {\huge\rmfamily\itshape\color{blueMatlab}}% format applied to label+text
+  {\llap{\colorbox{blueMatlab}{\parbox{1.5cm}{\hfill\itshape\huge\color{white}\thechapter}}}}% label
+  {2pt}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+% section format
+\titleformat{\section}%
+  {\normalfont\Large\itshape\color{orangeMatlab}}% format applied to label+text
+  {\llap{\colorbox{orangeMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+% subsection format
+\titleformat{\subsection}%
+  {\normalfont\large\itshape\color{greenMatlab}}% format applied to label+text
+  {\llap{\colorbox{greenMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesubsection}}}}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+
+\definecolor{navyblue}{rgb}{0, 0, 0.6}
+\definecolor{crimsonred}{rgb}{0.6, 0, 0}
+\definecolor{gray}{rgb}{0.25, 0.25, 0.25}
+
+% Theorem stylinlg from
+%   https://tex.stackexchange.com/questions/1931/how-to-change-the-way-theorems-are-displayed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem  style
+\newtheoremstyle{thmstyle} % name
+    {\topsep}                    % Space above
+    {\topsep}                    % Space below
+    {\itshape}                   % Body font
+    {}                           % Indent amount
+    {\color{crimsonred}\bfseries}                   % Theorem head font
+    {.}                          % Punctuation after theorem head
+    {.5em}                       % Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{thmstyle}
+\newtheorem{tuftetheorem}{Theorem}[section] % [section] % [chapter]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition  style
+\newtheoremstyle{defstyle} % name
+    {\topsep}                    % Space above
+    {\topsep}                    % Space below
+    {\itshape}                   % Body font
+    {}                           % Indent amount
+    {\color{navyblue}\bfseries}                   % Theorem head font
+    {.}                          % Punctuation after theorem head
+    {.5em}                       % Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{defstyle}
+\newtheorem{tuftedefinition}{Definition}[section] % [section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Standard theorem  style
+\newtheoremstyle{standardstyle} % name
+    {\topsep}                    % Space above
+    {\topsep}                    % Space below
+    {\itshape}                   % Body font
+    {}                           % Indent amount
+    {\color{gray}\bfseries}                   % Theorem head font
+    {.}                          % Punctuation after theorem head
+    {.5em}                       % Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{standardstyle}
+\newtheorem{tuftelemma}{Lemma}[section] % [section]
+\newtheorem{tufteproposition}{Proposition}[section] % [section]
+\newtheorem{tuftecorollary}{Corollary}[section] % [section]
+\newtheorem{tufteexample}{Example}[section] % [section]
+
+\newtheorem{tufteremark}{Remark}[section] % [section]
+\newtheorem{tufteproperty}{Property}[section] % [section]
+\newtheorem{tuftefalgorithm}{Algorithm}[section] % [section]
+% % TODO What is this for?
+% \renewcommand{\theenumii}{\arabic{enumii}}
+% \renewcommand{\labelenumii}{\theenumi.\theenumii.}
+% \makeatletter
+% \renewcommand{\p@enumii}{\theenumi.}
