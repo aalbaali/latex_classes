@@ -11,8 +11,12 @@
 \@ifclassloaded{decar-pres} {
     % Do nothing
 }{
-    \RequirePackage[colorlinks, citecolor=black, linkcolor=black,
-                    linktocpage=false]{hyperref}  % Hyperlinks
+    \@ifclassloaded{tufte-book}{
+        % Do nothing
+    }{
+        \RequirePackage[colorlinks, citecolor=black, linkcolor=black,
+            linktocpage=false]{hyperref}  % Hyperlinks
+    }
 }
 \makeatother
 
