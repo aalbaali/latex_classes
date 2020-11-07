@@ -66,6 +66,10 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     \begin{myBlackBox}
 \begin{proposition}}{\end{proposition}\end{myBlackBox}}
 
+\newenvironment{mylemma}{
+    \begin{myBlackBox}
+\begin{lemma}}{\end{lemma}\end{myBlackBox}}
+
 \newenvironment{myproperty}{
     \begin{myBlackBox}
 \begin{property}}{\end{property}\end{myBlackBox}}
@@ -74,6 +78,8 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     \begin{myBlackBox}
 \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
 
+% Kinematics
+\renewcommand{\rframe}[1]{{\ensuremath{\mathcal{F}}_{#1}}}
 
 % Operator that includes ifelse statement
 \newcommand{\myoperator}[2]{\ifthenelse{\equal{#2}{}}{}{#1\left(#2\right)}\xspace}
@@ -98,12 +104,15 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 
 \newcommand{\rv}[1]{\uline{#1}\xspace} % Random variable
 \newcommand{\mbfrv}[1]{\mbfuline{#1}} % mbf random variable
+\newcommand{\mbfhatrv}[1]{\hat{\mbfrv{#1}}}
+\newcommand{\mbfcheckrv}[1]{\check{\mbfrv{#1}}}
 \newcommand{\pSet}{\mathcal{P}} % power set
 \newcommand{\pCal}{\mathcal{P}} % power set 
 \newcommand{\rCal}{\mathcal{R}} % power set 
 \newcommand{\fCal}{\mathcal{F}} %F sigma algebra
 \newcommand{\comp}{\mathrm{C}} % set complement
 \renewcommand{\var}[1]{\operatorname{Var}\left[#1\right]}
+
 % Covariance
 \renewcommand{\cov}[1]{\operatorname{Cov}\left[#1\right]}
 % Derivatives
@@ -111,11 +120,11 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\td}[2]{\f{\dee #1}{\dee #2}\xspace}
 
 
-% Lie groups
 % DCM stuff
 \NewDocumentCommand{\dcmtrans}{ O{} }{\mbf{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
 \NewDocumentCommand{\dcmbartrans}{ O{} }{\mbfbar{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
-
+\newcommand{\Exp}{\operatorname{Exp}}
+\newcommand{\Log}{\operatorname{Log}}
 % Sectioning
 % End of example command
 \newcommand\xqed[1]{%
