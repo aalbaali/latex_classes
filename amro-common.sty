@@ -180,3 +180,21 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \renewcommand{\SO}[0]{\ensuremath{\LieGroupFont{SO}}}
 \renewcommand{\se}[0]{\ensuremath{\LieAlgFont{se}}}
 \renewcommand{\so}[0]{\ensuremath{\LieAlgFont{so}}}
+
+%% Headers and footers
+% Remove left footer
+\lfoot{}
+
+% First page style
+\fancypagestyle{plain}
+{
+%   \fancyhf{}
+%   \lhead{}
+%   \chead{}
+%   \rhead{}
+  \lfoot{}
+%   \cfoot{}
+%   \rfoot{\small Page \thepage{}\ of \pageref{LastPage}}
+%   \renewcommand{\headrulewidth}{0.0pt} 
+%   \renewcommand{\footrulewidth}{0.75pt}
+}
