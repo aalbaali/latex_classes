@@ -85,7 +85,9 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\myoperator}[2]{\ifthenelse{\equal{#2}{}}{}{#1\left(#2\right)}\xspace}
 
 %% Probability
-\renewcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+% \renewcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\renewcommand{\expect}[2][{}]{\mathbb{E}\ifthenelse{\equal{#1}{}}{}{_{#1}}\left[#2\right]}
+% Expectation with arguments (underlined)
 % \renewcommand{\expect}[1]{\ifthenelse{\equal{#1}{}}{\mathbb{E}}{\mathbb{E}\left[#1\right]}\xspace}
 % \newcommand{\uline}[1]{\underline{#1}}
 \newcommand{\mbfuline}[1]{\underline{\mbf{#1}}}
