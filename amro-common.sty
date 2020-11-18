@@ -1,3 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change log
+% ----------------------------------------------------------------------------------------
+%   18-Nov-2020     :   Amro Al Baali
+%       Added \mbfwhat and \mbswhat
+% ----------------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
 \RequirePackage{decar-common}
@@ -78,7 +85,12 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     \begin{myBlackBox}
 \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
 
-% Kinematics
+%%% General 
+% \mbf with widehat
+\newcommand{\mbfwhat}[1]{\what{\mbf{#1}}}
+% \mbs with widehat
+\newcommand{\mbswhat}[1]{\what{\mbs{#1}}}
+%%% Kinematics
 \renewcommand{\rframe}[1]{{\ensuremath{\mathcal{F}}_{#1}}}
 
 % Operator that includes ifelse statement
