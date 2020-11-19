@@ -86,6 +86,19 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
 
 %%% General 
+% Acronyms
+\newcommand{\acDef}{Def.}
+\newcommand{\acEx}{Ex.}
+\newcommand{\acThm}{Thm.}
+\newcommand{\acFig}{Fig.}
+\newcommand{\acTab}{Table}
+% Referencing
+\newcommand{\defref}[1]{\acDef~\ref{#1}}
+\newcommand{\exref}[1]{\acEx~\ref{#1}}
+\newcommand{\thmref}[1]{\acThm~\ref{#1}}
+\newcommand{\figref}[1]{\acFig~\ref{#1}}
+\newcommand{\tabref}[1]{\acTab~\ref{#1}}
+
 % \mbf with widehat
 \newcommand{\mbfwhat}[1]{\widehat{\mbf{#1}}}
 % \mbs with widehat
@@ -102,6 +115,8 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\checkArgsRB}[1]{\ifthenelse{\equal{#1}{}}{}{\left(#1\right)}}
 % Optional function arguments and return square brackets
 \newcommand{\checkArgsSB}[1]{\ifthenelse{\equal{#1}{}}{}{\left[#1\right]}}
+% Check if it's a single or multiple argumnets. If two arguments, return them delimmeted by a comma
+\newcommand{\checkNumArgs}[2]{\ifthenelse{\equal{#2}{}}{#1}{#1, #2}}
 
 %%% Probability
 %% Operator symbols
@@ -119,6 +134,10 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\symCdf}{F}
 % PMF
 \newcommand{\symPmf}{p}
+% Autocorrelation
+\newcommand{\symACor}{R}
+% Autocovariance
+\newcommand{\symACov}{C}
 
 %% Operators
 % Probability
@@ -136,6 +155,14 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\cdf}[2][{}]{\symCdf\optsub{#1}\checkArgsRB{#2}}
 % PMF
 \newcommand{\pmf}[2][{}]{\symPmf\optsub{#1}\checkArgsRB{#2}}
+
+% Autocorrelation function second argument is optional. 
+%       First (optional) argument is subscripts, 
+%       second argument is first time t_{1}, 
+%       third (optional) argument is second time t_{2}
+\NewDocumentCommand{\acor}{O{} m O{}}{\symACor\optsub{#1}\left(\checkNumArgs{#2}{#3}\right)}
+% Autocovariance function
+\NewDocumentCommand{\acov}{O{} m O{}}{\symACov\optsub{#1}\left(\checkNumArgs{#2}{#3}\right)}
 
 % Gaussian PDF expanded using e^
 \newcommand{\gaussian}[3]{e^{-\onehalf\norm{{#1}-{#2}}_{#3}^{2}}\xspace} % 1: Random variable, 2: mean, 3: Covariance
