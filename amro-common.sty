@@ -14,7 +14,6 @@
 \RequirePackage{amsmath,amsthm}
 
 
-
 %%% Packages
 \usepackage{float}
 \usepackage{enumitem}
@@ -48,10 +47,7 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     }
     {\end{myBlueBox_0}}
 \newenvironment{myGreyBox}
-    {
-    \vspace{1em}
-    \begin{myGreyBox_0}
-    }
+    {\vspace{1em}\begin{myGreyBox_0}}
     {\end{myGreyBox_0}}
 \usepackage{tcolorbox}
 
@@ -85,8 +81,19 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
     \begin{myBlackBox}
 \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
 
-%%% General 
-% Acronyms
+%% Helper operators (``private'' functions/operators)
+% Optional subscript (Return argument as subscript if not empty. Otherwise, return nothing)
+\newcommand{\optsub}[1]{\ifthenelse{\equal{#1}{}}{}{\ensuremath{_{#1}}}}
+% Optional function arguments and return (R)ound (B)rackets (if argument is empty, return nothing)
+\newcommand{\checkArgsRB}[1]{\ifthenelse{\equal{#1}{}}{}{\left(#1\right)}}
+% Optional function arguments and return (S)quare (B)rackets (if argument is empty, return nothing)
+\newcommand{\checkArgsSB}[1]{\ifthenelse{\equal{#1}{}}{}{\left[#1\right]}}
+% Check if it's a single or two argumnets. If two arguments, return them delimmeted by a comma
+\newcommand{\checkNumArgs}[2]{\ifthenelse{\equal{#2}{}}{#1}{#1, #2}}
+
+%%% General
+%% Referencing symbols
+% Referencing shorthands
 \newcommand{\acDef}{Def.}
 \newcommand{\acEx}{Ex.}
 \newcommand{\acThm}{Thm.}
@@ -103,20 +110,9 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\mbfwhat}[1]{\widehat{\mbf{#1}}}
 % \mbs with widehat
 \newcommand{\mbswhat}[1]{\widehat{\mbs{#1}}}
+
 %%% Kinematics
-\renewcommand{\rframe}[1]{{\ensuremath{\mathcal{F}}_{#1}}}
-
-% Operator that includes ifelse statement
-\newcommand{\myoperator}[2]{\ifthenelse{\equal{#2}{}}{}{#1\left(#2\right)}\xspace}
-
-% Optional subscript (to be used with expectation and pdf, etc.)
-\newcommand{\optsub}[1]{\ifthenelse{\equal{#1}{}}{}{\ensuremath{_{#1}}}}
-% Optional function arguments and return round brackets
-\newcommand{\checkArgsRB}[1]{\ifthenelse{\equal{#1}{}}{}{\left(#1\right)}}
-% Optional function arguments and return square brackets
-\newcommand{\checkArgsSB}[1]{\ifthenelse{\equal{#1}{}}{}{\left[#1\right]}}
-% Check if it's a single or multiple argumnets. If two arguments, return them delimmeted by a comma
-\newcommand{\checkNumArgs}[2]{\ifthenelse{\equal{#2}{}}{#1}{#1, #2}}
+\renewcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
 
 %%% Probability
 %% Operator symbols
@@ -168,11 +164,6 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 % Mean function of a random process
 \newcommand{\rpmean}[1][{}]{\symRPmean\optsub{#1}}
 
-% Gaussian PDF expanded using e^
-\newcommand{\gaussian}[3]{e^{-\onehalf\norm{{#1}-{#2}}_{#3}^{2}}\xspace} % 1: Random variable, 2: mean, 3: Covariance
-% Gaussian PDF expanded using \exp
-\newcommand{\gaussianexp}[3]{\exp\left(-{\onehalf\norm{{#1}-{#2}}_{#3\inv}^{2}}\right)\xspace} % 1: Random variable, 2: mean, 3: Covariance
-
 %% Random variables
 \newcommand{\mbfuline}[1]{\underline{\mbf{#1}}}
 \newcommand{\mbsuline}[1]{\underline{\mbs{#1}}}
@@ -182,10 +173,17 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand{\mbfcheckrv}[1]{\check{\mbfrv{#1}}}
 \newcommand{\mbsrv}[1]{\mbsuline{#1}} % mbs random variable
 \newcommand{\pSet}{\mathcal{P}} % power set
-\newcommand{\pCal}{\mathcal{P}} % power set 
-\newcommand{\rCal}{\mathcal{R}} % power set 
+\newcommand{\pCal}{\mathcal{P}} % power set (redundant)
+\newcommand{\rCal}{\mathcal{R}} % Range
 \newcommand{\fCal}{\mathcal{F}} %F sigma algebra
 \newcommand{\comp}{\mathrm{C}} % set complement
+
+% Obselete -->
+% Gaussian PDF expanded using e^
+\newcommand{\gaussian}[3]{e^{-\onehalf\norm{{#1}-{#2}}_{#3}^{2}}\xspace} % 1: Random variable, 2: mean, 3: Covariance
+% Gaussian PDF expanded using \exp
+\newcommand{\gaussianexp}[3]{\exp\left(-{\onehalf\norm{{#1}-{#2}}_{#3\inv}^{2}}\right)\xspace} % 1: Random variable, 2: mean, 3: Covariance
+% <--
 
 % Derivatives
 % Total derivative
@@ -204,7 +202,6 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \newcommand\triqed{\xqed{$\triangle$}}
 
 % Common
-% \newcommand{\mbfbar}[1]{\bar{\mbf{#1}}}
 \newcommand{\diag}[1]{\operatorname{diag}\checkArgsRB{#1}\xspace}
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\mbb}[1]{\mathbb{#1}}
@@ -212,10 +209,12 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 
 
 % Latin shorthands
-\renewcommand{\eg}[0]{{\textit{e.g.}\@}\xspace}
-\renewcommand{\ie}[0]{{\textit{i.e.}\@}\xspace}
+\def\eg{{\textit{e.g.}\@}\xspace}
+\def\ie{{\textit{i.e.}\@}\xspace}
+\def\etc{{\textit{e.t.c.}\@}\xspace}
 
-% Lie groups
+%% Lie groups
+% Fonts
 \newcommand{\LieGroupFont}{\mathrm}
 \newcommand{\LieAlgFont}{\mf}
 
@@ -223,21 +222,3 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
 \renewcommand{\SO}[0]{\ensuremath{\LieGroupFont{SO}}}
 \renewcommand{\se}[0]{\ensuremath{\LieAlgFont{se}}}
 \renewcommand{\so}[0]{\ensuremath{\LieAlgFont{so}}}
-
-%% Headers and footers
-% Remove left footer
-\lfoot{}
-
-% First page style
-\fancypagestyle{plain}
-{
-%   \fancyhf{}
-%   \lhead{}
-%   \chead{}
-%   \rhead{}
-  \lfoot{}
-%   \cfoot{}
-%   \rfoot{\small Page \thepage{}\ of \pageref{LastPage}}
-%   \renewcommand{\headrulewidth}{0.0pt} 
-%   \renewcommand{\footrulewidth}{0.75pt}
-}
