@@ -2,34 +2,42 @@
 \ProvidesPackage{amro-tufte}
 % AA : This is obtained from the header of sample-book.tex from Tufte example.
 
+
+\@ifclassloaded{tufte-handout}{
+  \RequirePackage{amsmath,amsthm}
+  \RequirePackage{multicol} % multiple column layout facilities
+}{
+  % Do nothing?  
+}
 % Using this to suppress font warnings
-\usepackage{lmodern}% http://ctan.org/pkg/lm
+\RequirePackage{lmodern}% http://ctan.org/pkg/lm
 
 %%
 % If they're installed, use Bergamo and Chantilly from www.fontsite.com.
 % They're clones of Bembo and Gill Sans, respectively.
-%\IfFileExists{bergamo.sty}{\usepackage[osf]{bergamo}}{}% Bembo
-%\IfFileExists{chantill.sty}{\usepackage{chantill}}{}% Gill Sans
+%\IfFileExists{bergamo.sty}{\RequirePackage[osf]{bergamo}}{}% Bembo
+%\IfFileExists{chantill.sty}{\RequirePackage{chantill}}{}% Gill Sans
 
-%\usepackage{microtype}
+%\RequirePackage{microtype}
 
 %%
 % Just some sample text
-\usepackage{lipsum}
+\RequirePackage{lipsum}
 
 %%
 % For nicely typeset tabular material
-\usepackage{booktabs}
+\RequirePackage{booktabs}
 
 %%
 % For graphics / images
-\usepackage{graphicx}
+\RequirePackage{graphicx}
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+% Path may not be necessary?
 \graphicspath{{graphics/}}
 
 % The fancyvrb package lets us customize the formatting of verbatim
 % environments.  We use a slightly smaller font.
-\usepackage{fancyvrb}
+\RequirePackage{fancyvrb}
 \fvset{fontsize=\normalsize}
 
 %%
@@ -44,7 +52,7 @@
 
 %%
 % Prints a trailing space in a smart way.
-\usepackage{xspace}
+\RequirePackage{xspace}
 
 %%
 % Some shortcuts for Tufte's book titles.  The lowercase commands will
@@ -84,7 +92,7 @@
 % Inserts a blank page
 \newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
 
-\usepackage{units}
+\RequirePackage{units}
 
 % Typesets the font size, leading, and measure in the form of 10/12x26 pc.
 \newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}}
@@ -98,11 +106,19 @@
 % AA:  Defining these commands will override the definitions in amro-common
 \@ifundefined{ie}{
     \newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace}
-}{}
+}{
+    \renewcommand{\ie}{\textit{i.\hairsp{}e.}\xspace}
+}
 \@ifundefined{eg}{
-    \newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace}
-}{}
-\newcommand{\etc}{\textit{e.\hairsp{}t.\hairsp{}c.}\xspace}
+  \newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace}
+}{
+  \renewcommand{\eg}{\textit{e.\hairsp{}g.}\xspace}
+}
+\@ifundefined{etc}{
+  \newcommand{\etc}{\textit{e.\hairsp{}t.\hairsp{}c.}\xspace}
+}{
+  \renewcommand{\etc}{\textit{e.\hairsp{}t.\hairsp{}c.}\xspace}
+}
 \newcommand{\na}{\quad--}% used in tables for N/A cells
 \providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
 \newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}}
@@ -162,29 +178,35 @@
 
 \setcounter{secnumdepth}{2}
 
-% chapter format
-\titleformat{\chapter}%
-  {\huge\rmfamily\itshape\color{blueMatlab}}% format applied to label+text
-  {\llap{\colorbox{blueMatlab}{\parbox{1.5cm}{\hfill\itshape\huge\color{white}\thechapter}}}}% label
-  {2pt}% horizontal separation between label and title body
-  {}% before the title body
-  []% after the title body
+% % chapter format
+% \titleformat{\chapter}%
+%   {\huge\rmfamily\itshape\color{blueMatlab}}% format applied to label+text
+%   {\llap{\colorbox{blueMatlab}{\parbox{1.5cm}{\hfill\itshape\huge\color{white}\thechapter}}}}% label
+%   {2pt}% horizontal separation between label and title body
+%   {}% before the title body
+%   []% after the title body
 
-% section format
-\titleformat{\section}%
-  {\normalfont\Large\itshape\color{orangeMatlab}}% format applied to label+text
-  {\llap{\colorbox{orangeMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
-  {1em}% horizontal separation between label and title body
-  {}% before the title body
-  []% after the title body
+% % section format
+% \titleformat{\section}%
+%   {\normalfont\Large\bfseries}% format applied to label+text
+%   {\thesection}% label
+%   {1em}% horizontal separation between label and title body
+%   {}% before the title body
+%   []% after the title body
+% % \titleformat{\section}%
+% %   {\normalfont\Large\itshape\color{orangeMatlab}}% format applied to label+text
+% %   {\llap{\colorbox{orangeMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
+% %   {1em}% horizontal separation between label and title body
+% %   {}% before the title body
+% %   []% after the title body
 
-% subsection format
-\titleformat{\subsection}%
-  {\normalfont\large\itshape\color{greenMatlab}}% format applied to label+text
-  {\llap{\colorbox{greenMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesubsection}}}}% label
-  {1em}% horizontal separation between label and title body
-  {}% before the title body
-  []% after the title body
+% % subsection format
+% \titleformat{\subsection}%
+%   {\normalfont\large\itshape\color{greenMatlab}}% format applied to label+text
+%   {\llap{\colorbox{greenMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesubsection}}}}% label
+%   {1em}% horizontal separation between label and title body
+%   {}% before the title body
+%   []% after the title body
 
 
 % Theorem stylinlg from

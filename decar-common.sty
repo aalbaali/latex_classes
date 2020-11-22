@@ -33,7 +33,9 @@
 \@ifclassloaded{tufte-book}{
     % Do nothing
 }{
-    \RequirePackage{cite}
+    \@ifclassloaded{tufte-handout}{}{
+        \RequirePackage{cite}
+    }    
 }
 \RequirePackage{wrapfig}  % Allows figures and tables to have text around them
 \RequirePackage{setspace}  % \singlespacing{}, \onehalfspacing{}, \doublespacing{}

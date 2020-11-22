@@ -14,8 +14,11 @@
     \@ifclassloaded{tufte-book}{
         % Do nothing
     }{
-        \RequirePackage[colorlinks, citecolor=black, linkcolor=black,
+        \@ifclassloaded{tufte-handout}{}{
+            \RequirePackage[colorlinks, citecolor=black, linkcolor=black,
             linktocpage=false]{hyperref}  % Hyperlinks
+        }
+        
     }
 }
 \makeatother
