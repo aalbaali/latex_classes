@@ -4,6 +4,14 @@
 %   18-Nov-2020     :   Amro Al Baali
 %       Added \mbfwhat and \mbswhat
 % ----------------------------------------------------------------------------------------
+%   22-Nov-2020     :   Amro Al Baali
+%       Removed the \lfoot{} adjustments to allow the package to be used with documents without lfoot
+% ----------------------------------------------------------------------------------------
+%       - Replaced the environments `my<color>Box' with `<color>Box', where <color> is an appropriate color. The old commands are still available
+%       - Replaced `myBlueBoxShaded' with `blueBoxShaded'
+%       - Commented out `mytheoremarg'
+%       - Replaced `my<env>' with `<env>Box', where <env> are environments such as `theorem', `definition', etc. The old commands should still be working.
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
@@ -15,71 +23,102 @@
 
 
 %%% Packages
-\usepackage{float}
-\usepackage{enumitem}
-\usepackage[framemethod=tikz]{mdframed}
-\usepackage{lipsum}
-\usepackage{{tikz}}
-\usepackage{pdfpages}
-\usepackage[normalem]{ulem}
+\RequirePackage{float}
+\RequirePackage{enumitem}
+\RequirePackage[framemethod=tikz]{mdframed}
+\RequirePackage{lipsum}
+\RequirePackage{{tikz}}
+\RequirePackage{pdfpages}
+\RequirePackage[normalem]{ulem}
+% For colored boxes
+\RequirePackage{tcolorbox} 
 
 \RequirePackage{bbm} % Allos the use of \mathbbm for math mode
 
-% Box environments
-\definecolor{myBlueColor}{rgb}{0.122, 0.435, 0.698}
-\definecolor{myGreyColor}{rgb}{0.5, 0.5, 0.5}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=myBlueColor, innerleftmargin=6pt,
-innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myBlueBox_0}
+%% Box environment colors
+\definecolor{boxColorBlue}{rgb}{0.122, 0.435, 0.698}
+\definecolor{boxClorGrey}{rgb}{0.5, 0.5, 0.5}
+%% Box margins
+% Blue
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=boxColorBlue, innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginBlue}
+% Black
 \newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=black, innerleftmargin=6pt,
-innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myBlackBox_0}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=myGreyColor,innerleftmargin=6pt,
-innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{myGreyBox_0}
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginBlack}
+% Grey
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=boxClorGrey,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
+
+%% Box environments with spaces
+% Old commands 
 \newenvironment{myBlackBox}
-    {
-    \vspace{1em}
-    \begin{myBlackBox_0}
-    }
-    {\end{myBlackBox_0}}
+    {\begin{blackBox}}
+    {\end{blackBox}}
 \newenvironment{myBlueBox}
-    {
-    \vspace{1em}
-    \begin{myBlueBox_0}
-    }
-    {\end{myBlueBox_0}}
+    {\begin{blueBox}}
+    {\end{blueBox}}
 \newenvironment{myGreyBox}
-    {\vspace{1em}\begin{myGreyBox_0}}
-    {\end{myGreyBox_0}}
-\usepackage{tcolorbox}
+    {\begin{greyBox}}
+    {\end{greyBox}}
 
-\newtcolorbox{myBlueBoxShaded}{colback=myBlueColor,colframe=black}
+% New commands 
+\newenvironment{blackBox}
+    {\vspace{1em}\begin{boxMarginBlack}}
+    {\end{boxMarginBlack}}
+\newenvironment{blueBox}
+    {\vspace{1em}\begin{boxMarginBlue}}
+    {\end{boxMarginBlue}}
+\newenvironment{greyBox}
+    {\vspace{1em}\begin{boxMarginGrey}}
+    {\end{boxMarginGrey}}
 
+% Shaded boxes
+\newtcolorbox{blueBoxShaded}{colback=boxColorBlue,colframe=black}
+
+%% Old environments (obselete)
 \newenvironment{mydefinition}[1][\unskip]{
-    \begin{myBlackBox}
-\begin{definition}[\emph{#1}]}{\end{definition}\end{myBlackBox}}
-
+    \begin{definitionBox}}{\end{definitionBox}}
 \newenvironment{myremark}{
-    \begin{myBlueBox}
-\begin{remark}}{\end{remark}\end{myBlueBox}}
-
+    \begin{remarkBox}}{\end{remarkBox}}            
 \newenvironment{mytheorem}{
-    \begin{myBlackBox}
-\begin{theorem}}{\end{theorem}\end{myBlackBox}}
-
-\newenvironment{myproposition}{
-    \begin{myBlackBox}
-\begin{proposition}}{\end{proposition}\end{myBlackBox}}
-
+    \begin{theoremBox}}{\end{theoremBox}}
+\newenvironment{myproposition}{   
+    propositionBox}{\end{propositionBox}}
 \newenvironment{mylemma}{
-    \begin{myBlackBox}
-\begin{lemma}}{\end{lemma}\end{myBlackBox}}
-
+    \begin{lemmaBox}}{\end{lemmaBox}}
 \newenvironment{myproperty}{
-    \begin{myBlackBox}
-\begin{property}}{\end{property}\end{myBlackBox}}
+    \begin{propertyBox}}{\end{propertyBox}}    
+%% I believe this is no longer needed -->    
+% \newenvironment{mytheoremarg}[1][\unskip]{
+%     \begin{myBlackBox}
+%     \begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}    
+%% <--    
 
-\newenvironment{mytheoremarg}[1][\unskip]{
-    \begin{myBlackBox}
-\begin{theorem}[\emph{#1}]}{\end{theorem}\end{myBlackBox}}
+%% New environments  
+% Definition  
+\newenvironment{definitionBox}[1][\unskip]{
+    \begin{blackBox}
+    \begin{definition}[\emph{#1}]}{\end{definition}\end{blackBox}}
+% Remark
+\newenvironment{remarkBox}{
+    \begin{blueBox}
+    \begin{remark}}{\end{remark}\end{blueBox}}
+% Theorem
+\newenvironment{theoremBox}{
+    \begin{blackBox}
+    \begin{theorem}}{\end{theorem}\end{blackBox}}
+% Proposition
+\newenvironment{propositionBox}{
+    \begin{blackBox}
+    \begin{proposition}}{\end{proposition}\end{blackBox}}
+% Lemma
+\newenvironment{lemmaBox}{
+    \begin{blackBox}
+\begin{lemma}}{\end{lemma}\end{blackBox}}
+% Property
+\newenvironment{propertyBox}{
+    \begin{blackBox}
+    \begin{property}}{\end{property}\end{blackBox}}
 
 %% Helper operators (``private'' functions/operators)
 % Optional subscript (Return argument as subscript if not empty. Otherwise, return nothing)
