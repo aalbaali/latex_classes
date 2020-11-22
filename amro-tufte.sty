@@ -172,12 +172,14 @@
 
 \definecolor{navyblue}{rgb}{0, 0, 0.6}
 \definecolor{crimsonred}{rgb}{0.6, 0, 0}
+\definecolor{royalgreen}{rgb}{0.0745, 0.3843, 0.0275}
 \definecolor{gray}{rgb}{0.25, 0.25, 0.25}
 
 \def\sectionfont{\sffamily\LARGE}
 
 \setcounter{secnumdepth}{2}
 
+% Title and chapter formatting (with a box)
 % % chapter format
 % \titleformat{\chapter}%
 %   {\huge\rmfamily\itshape\color{blueMatlab}}% format applied to label+text
@@ -186,19 +188,12 @@
 %   {}% before the title body
 %   []% after the title body
 
-% % section format
 % \titleformat{\section}%
-%   {\normalfont\Large\bfseries}% format applied to label+text
-%   {\thesection}% label
+%   {\normalfont\Large\itshape\color{orangeMatlab}}% format applied to label+text
+%   {\llap{\colorbox{orangeMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
 %   {1em}% horizontal separation between label and title body
 %   {}% before the title body
 %   []% after the title body
-% % \titleformat{\section}%
-% %   {\normalfont\Large\itshape\color{orangeMatlab}}% format applied to label+text
-% %   {\llap{\colorbox{orangeMatlab}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
-% %   {1em}% horizontal separation between label and title body
-% %   {}% before the title body
-% %   []% after the title body
 
 % % subsection format
 % \titleformat{\subsection}%
@@ -208,6 +203,28 @@
 %   {}% before the title body
 %   []% after the title body
 
+%% Title and chapter formatting (without a box)
+% chapter format
+\titleformat{\chapter}%
+  {\huge\rmfamily\itshape\color{navyblue}\bfseries\itshape}% format applied to label+text
+  {\Huge\color{navyblue}\thechapter}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+% section format
+\titleformat{\section}%
+  {\normalfont\color{navyblue}\Large\bfseries\itshape}% format applied to label+text
+  {\color{navyblue}\thesection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+% subsection format
+\titleformat{\subsection}%
+  {\normalfont\color{navyblue}\large\bfseries\itshape}% format applied to label+text
+  {\color{navyblue}\thesubsection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
 
 % Theorem stylinlg from
 %   https://tex.stackexchange.com/questions/1931/how-to-change-the-way-theorems-are-displayed
@@ -232,7 +249,7 @@
     {\topsep}                    % Space below
     {\itshape}                   % Body font
     {}                           % Indent amount
-    {\color{navyblue}\bfseries}                   % Theorem head font
+    {\color{royalgreen}\bfseries}                   % Theorem head font
     {.}                          % Punctuation after theorem head
     {.5em}                       % Space after theorem head
     {}  % Theorem head spec (can be left empty, meaning ‘normal’)
