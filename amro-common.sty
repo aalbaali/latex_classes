@@ -12,6 +12,9 @@
 %       - Commented out `mytheoremarg'
 %       - Replaced `my<env>' with `<env>Box', where <env> are environments such as `theorem', `definition', etc. The old commands should still be working.
 % ----------------------------------------------------------------------------------------
+%   23-Nov-2020     :   Amro Al Baali
+%       Made the package more robust by adding checks before `renewcommand'
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
@@ -137,13 +140,16 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\acEx}{Ex.}
 \newcommand{\acThm}{Thm.}
 \newcommand{\acFig}{Fig.}
-\newcommand{\acTab}{Table}
+\newcommand{\acCh}{Chapter}
+\newcommand{\acSec}{Sec.}
 % Referencing
 \newcommand{\defref}[1]{\acDef~\ref{#1}}
 \newcommand{\exref}[1]{\acEx~\ref{#1}}
 \newcommand{\thmref}[1]{\acThm~\ref{#1}}
 \newcommand{\figref}[1]{\acFig~\ref{#1}}
 \newcommand{\tabref}[1]{\acTab~\ref{#1}}
+\newcommand{\charef}[1]{\acCh~\ref{#1}}
+% \newcommand{\secref}[1]{\acSec~\ref{#1}}
 
 % \mbf with widehat
 \newcommand{\mbfwhat}[1]{\widehat{\mbf{#1}}}
@@ -151,7 +157,11 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\mbswhat}[1]{\widehat{\mbs{#1}}}
 
 %%% Kinematics
-\renewcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
+\@ifundefined{rframe}{
+    \newcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
+}{
+    \renewcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
+}
 
 %%% Probability
 %% Operator symbols
@@ -252,12 +262,33 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \def\ie{{\textit{i.e.}\@}\xspace}
 \def\etc{{\textit{e.t.c.}\@}\xspace}
 
+%% Spaces and sets
+% Unit sphere
+\newcommand{\usphere}[1]{\ensuremath{S^{#1}}}
 %% Lie groups
 % Fonts
 \newcommand{\LieGroupFont}{\mathrm}
 \newcommand{\LieAlgFont}{\mf}
 
-\renewcommand{\SE}[0]{\ensuremath{\LieGroupFont{SE}}}
-\renewcommand{\SO}[0]{\ensuremath{\LieGroupFont{SO}}}
-\renewcommand{\se}[0]{\ensuremath{\LieAlgFont{se}}}
-\renewcommand{\so}[0]{\ensuremath{\LieAlgFont{so}}}
+\@ifundefined{SE}{
+    \newcommand{\SE}[0]{\ensuremath{\LieGroupFont{SE}}}
+}{
+    \renewcommand{\SE}[0]{\ensuremath{\LieGroupFont{SE}}}
+}
+\@ifundefined{SO}{
+    \newcommand{\SO}[0]{\ensuremath{\LieGroupFont{SO}}}
+}{
+    \renewcommand{\SO}[0]{\ensuremath{\LieGroupFont{SO}}}
+}
+\@ifundefined{se}{
+    \newcommand{\se}[0]{\ensuremath{\LieGroupFont{se}}}
+}{
+    \renewcommand{\se}[0]{\ensuremath{\LieGroupFont{se}}}
+}
+\@ifundefined{so}{
+    \newcommand{\so}[0]{\ensuremath{\LieGroupFont{so}}}
+}{
+    \renewcommand{\so}[0]{\ensuremath{\LieGroupFont{so}}}
+}
+
+

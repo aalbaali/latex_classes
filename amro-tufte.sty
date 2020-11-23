@@ -1,3 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change log
+% ----------------------------------------------------------------------------------------
+%   22-Nov-2020     :   Amro Al Baali
+%       - Changed default chapter color to gray
+%       - Added option to choose chapter color.
+% ----------------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-tufte}
 % AA : This is obtained from the header of sample-book.tex from Tufte example.
@@ -175,6 +183,12 @@
 \definecolor{royalgreen}{rgb}{0.0745, 0.3843, 0.0275}
 \definecolor{gray}{rgb}{0.25, 0.25, 0.25}
 
+\newcommand{\chaptercolor}{gray}
+% Declare options : Chapter/section color
+\DeclareOption{chblue}{\renewcommand{\chaptercolor}{navyblue}}
+\DeclareOption{chgray}{\renewcommand{\chaptercolor}{gray}}
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
 \def\sectionfont{\sffamily\LARGE}
 
 \setcounter{secnumdepth}{2}
@@ -206,22 +220,22 @@
 %% Title and chapter formatting (without a box)
 % chapter format
 \titleformat{\chapter}%
-  {\huge\rmfamily\itshape\color{navyblue}\bfseries\itshape}% format applied to label+text
-  {\Huge\color{navyblue}\thechapter}% label
+  {\huge\rmfamily\itshape\color{\chaptercolor}\bfseries\itshape}% format applied to label+text
+  {\Huge\color{\chaptercolor}\thechapter}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
   []% after the title body
 % section format
 \titleformat{\section}%
-  {\normalfont\color{navyblue}\Large\bfseries\itshape}% format applied to label+text
-  {\color{navyblue}\thesection}% label
+  {\normalfont\color{\chaptercolor}\Large\bfseries\itshape}% format applied to label+text
+  {\color{\chaptercolor}\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
   []% after the title body
 % subsection format
 \titleformat{\subsection}%
-  {\normalfont\color{navyblue}\large\bfseries\itshape}% format applied to label+text
-  {\color{navyblue}\thesubsection}% label
+  {\normalfont\color{\chaptercolor}\large\bfseries\itshape}% format applied to label+text
+  {\color{\chaptercolor}\thesubsection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
   []% after the title body
