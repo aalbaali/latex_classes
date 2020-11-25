@@ -55,9 +55,15 @@
 % Latin phrases
 \newcommand{\etal}[0]{{\emph{et~al.}\@}\xspace}
 % English abbreviations
-\newcommand{\eg}[0]{{e.g.\@}\xspace}
-\newcommand{\ie}[0]{{i.e.\@}\xspace}
-\newcommand{\wrt}[0]{{w.r.t.\@}\xspace}
+\@ifundefined{eg}{
+    \newcommand{\eg}[0]{{e.g.\@}\xspace}
+}{}
+\@ifundefined{ie}{
+    \newcommand{\ie}[0]{{i.e.\@}\xspace}
+}{}
+\@ifundefined{wrt}{
+    \newcommand{\wrt}[0]{{w.r.t.\@}\xspace}
+}{}
 % Other custom commands.
 % TODO I don't love these
 \newcommand{\ignore}[1]{}

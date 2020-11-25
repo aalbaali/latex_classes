@@ -15,6 +15,12 @@
 %   23-Nov-2020     :   Amro Al Baali
 %       Made the package more robust by adding checks before `renewcommand'
 % ----------------------------------------------------------------------------------------
+%   25-Nov-2020     :   Amro Al Baali
+%       Removed the optional arguments from the old definition box. That is, replaced
+%           \newenvironment{mydefinition}[1][\unskip]{\begin{definitionBox}}{\end{definitionBox}}
+%       with
+%           \newenvironment{mydefinition}{\begin{definitionBox}}{\end{definitionBox}}
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
@@ -79,7 +85,7 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newtcolorbox{blueBoxShaded}{colback=boxColorBlue,colframe=black}
 
 %% Old environments (obselete)
-\newenvironment{mydefinition}[1][\unskip]{
+\newenvironment{mydefinition}{
     \begin{definitionBox}}{\end{definitionBox}}
 \newenvironment{myremark}{
     \begin{remarkBox}}{\end{remarkBox}}            
