@@ -21,6 +21,13 @@
 %       with
 %           \newenvironment{mydefinition}{\begin{definitionBox}}{\end{definitionBox}}
 % ----------------------------------------------------------------------------------------
+%   01-Dec-2020     :   Amro Al Baali
+%       Added inverse CDF function \invcdf
+% ----------------------------------------------------------------------------------------
+%   06-Dec-2020     :   Amro Al Baali
+%       - Added checkArgsCB (check arguments and add curly braces)
+%       - Renewed Fourier and Laplace transform commands.
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
@@ -136,6 +143,8 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\checkArgsRB}[1]{\ifthenelse{\equal{#1}{}}{}{\left(#1\right)}}
 % Optional function arguments and return (S)quare (B)rackets (if argument is empty, return nothing)
 \newcommand{\checkArgsSB}[1]{\ifthenelse{\equal{#1}{}}{}{\left[#1\right]}}
+% Curly bracket
+\newcommand{\checkArgsCB}[1]{\ifthenelse{\equal{#1}{}}{}{\left\{#1\right\}}}
 % Check if it's a single or two argumnets. If two arguments, return them delimmeted by a comma
 \newcommand{\checkNumArgs}[2]{\ifthenelse{\equal{#2}{}}{#1}{#1, #2}}
 
@@ -169,6 +178,27 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
     \renewcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
 }
 
+%% DSP
+%% Operator symbolds
+% Fourier
+\newcommand{\symFourier}{\mc{F}}
+% Laplace
+\newcommand{\symLaplace}{\mc{L}}
+%% Environments
+% Fourier
+\@ifundefined{fouriert}{
+    \newcommand{\fouriert}[1]{\symFourier\checkArgsCB{#1}}
+}{
+    \renewcommand{\fouriert}[1]{\symFourier\checkArgsCB{#1}}
+}
+% Inverse fourier
+\@ifundefined{invfouriert}{
+    \newcommand{\invfouriert}[1][{}]{\symFourier\inv\checkArgsCB{#1}}
+}{
+    \renewcommand{\invfouriert}[1][{}]{\symFourier\inv\checkArgsCB{#1}}
+}
+
+
 %%% Probability
 %% Operator symbols
 % Probability
@@ -191,6 +221,8 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\symACor}{R}
 % Autocovariance
 \newcommand{\symACov}{C}
+% Power spectral density
+\newcommand{\symPsd}{S}
 
 %% Operators
 % Probability
@@ -206,8 +238,12 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\pdf}[2][{}]{\symPdf\optsub{#1}\checkArgsRB{#2}}
 % CDF
 \newcommand{\cdf}[2][{}]{\symCdf\optsub{#1}\checkArgsRB{#2}}
+% Inverse CDF
+\newcommand{\invcdf}[2][{}]{\symCdf\inv\optsub{#1}\checkArgsRB{#2}}
 % PMF
 \newcommand{\pmf}[2][{}]{\symPmf\optsub{#1}\checkArgsRB{#2}}
+% PSD
+\newcommand{\psd}[2][{}]{\symPsd\optsub{#1}\checkArgsRB{#2}}
 
 % Autocorrelation function second argument is optional. 
 %       First (optional) argument is subscripts, 
