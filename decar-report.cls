@@ -1,3 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change log
+% ----------------------------------------------------------------------------------------
+%   30-Dec-2020     :   Amro Al Baali
+%       Removed text from left footer and changed page numbering
+% ----------------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{decar-report}[DECAR Report Template]
 \LoadClass[letterpaper, 11pt]{report}
@@ -16,9 +24,9 @@
 \lhead{}
 \chead{\thline} 
 \rhead{}
-\lfoot{\small \thetitle{} --- \thedate{}}
-\cfoot{}
-\rfoot{\small Page \thepage{}\ of \pageref{LastPage}}
+\lfoot{}
+\cfoot{\thepage{}}
+\rfoot{}
 \renewcommand{\headrulewidth}{0.0pt} 
 \renewcommand{\footrulewidth}{0.75pt}
 
