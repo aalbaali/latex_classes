@@ -31,6 +31,10 @@
 %   25-Mar-2021     :   Amro Al Baali
 %       - Changed latin shorthands (`e.g.', `i.e.', `etc.') to straight font (not italic)
 % ----------------------------------------------------------------------------------------
+%   5-Apr-2021     :   Amro Al Baali
+%       - Added RV to kinematics (\dcmrv, \dcmrvtrans, \disprv, etc.)
+%       - Wrapped boxes (blue, black, grey) with floating figure (so it doesn't break when displaying)
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
@@ -82,14 +86,14 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 
 % New commands 
 \newenvironment{blackBox}
-    {\vspace{1em}\begin{boxMarginBlack}}
-    {\end{boxMarginBlack}}
+    {\vspace{1em}\begin{figure}\begin{boxMarginBlack}}
+    {\end{boxMarginBlack}\end{figure}}
 \newenvironment{blueBox}
-    {\vspace{1em}\begin{boxMarginBlue}}
-    {\end{boxMarginBlue}}
+    {\vspace{1em}\begin{figure}[H]\begin{boxMarginBlue}}
+    {\end{boxMarginBlue}\end{figure}}
 \newenvironment{greyBox}
-    {\vspace{1em}\begin{boxMarginGrey}}
-    {\end{boxMarginGrey}}
+    {\vspace{1em}\begin{figure}[H]\begin{boxMarginGrey}}
+    {\end{boxMarginGrey}\end{figure}}
 
 % Shaded boxes
 \newtcolorbox{blueBoxShaded}{colback=boxColorBlue,colframe=black}
@@ -175,11 +179,14 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\mbswhat}[1]{\widehat{\mbs{#1}}}
 
 %%% Kinematics
+% Reference frames
 \@ifundefined{rframe}{
     \newcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
 }{
     \renewcommand{\rframe}[1][{}]{{\ensuremath{\mathcal{F}}\optsub{#1}}}
 }
+% Displacement random varaible
+\NewDocumentCommand{\disprv}{ O{} O{} }{\mbfrv{r}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\dispspace} #1 \ifthenelse{\equal{#1}{}}{}{\dispspace}}}
 
 %% DSP
 %% Operator symbolds
@@ -285,6 +292,8 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 
 % DCM stuff
 \NewDocumentCommand{\dcmtrans}{ O{} }{\mbf{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
+\NewDocumentCommand{\dcmrv}{ O{} }{\mbfrv{C}_{#1} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
+\NewDocumentCommand{\dcmrvtrans}{ O{} }{\mbfrv{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
 \NewDocumentCommand{\dcmbartrans}{ O{} }{\mbfbar{C}_{#1}^{\trans} {\ifthenelse{\equal{#1}{}}{}{\dcmspace}}}
 \newcommand{\Exp}{\operatorname{Exp}}
 \newcommand{\Log}{\operatorname{Log}}
