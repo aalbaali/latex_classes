@@ -14,3 +14,11 @@ where the stylesheets and classes live inside the `[customPackage]` folder.
 3. Run the command `mktexlsr`.
 
 Checkout <https://tex.stackexchange.com/questions/2063/how-can-i-manually-install-a-package-on-miktex-windows> for reference.
+
+# On linux
+I followed the instructions from this [link](https://tex.stackexchange.com/questions/1137/where-do-i-place-my-own-sty-or-cls-files-to-make-them-available-to-all-my-te).
+
+Here are the summarized instructions
+1.  Type `kpsewhich -var-value TEXMFHOME` to get the latex search path. It looks something like `/hom/aalbaali/texmf`. Note that this directory may not exist (may not be created).
+2.  Add your folders (`.cls` and `.sty`) into `/home/aalbaali/texmf/tex/latex/[package-name]/`. Create the necessary directories if necessary.
+3.  From *within* that directory, run `texhash .` (or from anywhere type `texhassh /home/aalbaali/texmf/tex/latex`).
