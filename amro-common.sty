@@ -35,6 +35,10 @@
 %       - Added RV to kinematics (\dcmrv, \dcmrvtrans, \disprv, etc.)
 %       - Wrapped boxes (blue, black, grey) with floating figure (so it doesn't break when displaying)
 % ----------------------------------------------------------------------------------------
+%   19-Apr-2021     :   Amro Al Baali
+%       - Added \mbscheckrv and \mbshatrv
+%       - Added \mbftilderv and \mbstilderv
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
@@ -274,9 +278,13 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 \newcommand{\mbsuline}[1]{\underline{\mbs{#1}}}
 \newcommand{\rv}[1]{\uline{#1}\xspace} % Random variable
 \newcommand{\mbfrv}[1]{\mbfuline{#1}} % mbf random variable
-\newcommand{\mbfhatrv}[1]{\hat{\mbfrv{#1}}}
-\newcommand{\mbfcheckrv}[1]{\check{\mbfrv{#1}}}
 \newcommand{\mbsrv}[1]{\mbsuline{#1}} % mbs random variable
+\newcommand{\mbftilderv}[1]{\tilde{\mbfrv{#1}}} % mbf random variable
+\newcommand{\mbstilderv}[1]{\tilde{\mbsrv{#1}}} % mbf random variable
+\newcommand{\mbfhatrv}[1]{\hat{\mbfrv{#1}}}
+\newcommand{\mbshatrv}[1]{\hat{\mbsrv{#1}}}
+\newcommand{\mbfcheckrv}[1]{\check{\mbfrv{#1}}}
+\newcommand{\mbscheckrv}[1]{\check{\mbsrv{#1}}}
 \newcommand{\pSet}{\mathcal{P}} % power set
 \newcommand{\pCal}{\mathcal{P}} % power set (redundant)
 \newcommand{\rCal}{\mathcal{R}} % Range
