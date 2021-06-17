@@ -4,6 +4,9 @@
 % 6-NOV-2020   :   Amro Al Baali
 %   Added a switch statement (if-else) for which citation package to import. Specifically, if the documentclass is tufte-book, then do not import the `cite' package.
 % -----------------------------------------------------------------------------
+% 17-JUN-2021   :   Amro Al Baali
+%   Removed the `cite' package dependancy and updated BiBlateX package options.
+% -----------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{decar-common}
@@ -33,9 +36,23 @@
 \@ifclassloaded{tufte-book}{
     % Do nothing
 }{
-    \@ifclassloaded{tufte-handout}{}{
-        \RequirePackage{cite}
-    }    
+  \RequirePackage[
+      backend=bibtex,
+      bibstyle=ieee,
+      citestyle=numeric-comp, % authoryear-comp
+      doi=false,
+      isbn=false,
+      url=false,
+      language=autocite,
+      sorting=none
+  ]{biblatex} % Bibliography
+  \AtEveryBibitem{\clearlist{language}} % clears language
+  \AtEveryBibitem{\clearfield{note}}    % clears notes
+  % Clear addresses/locations
+  \AtEveryCitekey{\clearlist{location}}
+  \AtEveryBibitem{\clearlist{location}}
+  \DeclareNameAlias{author}{first-last} % Author names: first-last
+  % \DeclareNameAlias{author}{last-first} % Author names: last-first
 }
 \RequirePackage{wrapfig}  % Allows figures and tables to have text around them
 \RequirePackage{setspace}  % \singlespacing{}, \onehalfspacing{}, \doublespacing{}
@@ -278,6 +295,6 @@
 % \newcommand{\innerp}[3]{\left\langle #1,#2 \right\rangle_{#3}}
 % \newcommand{\norm}[2]{\left| #1 \right|_{#2}}
 % \newcommand{\ubar}[1]{\stackunder[1.2pt]{$#1$}{\rule{.8ex}{.075ex}}}
-% \newcommand{\utimes}{{\ensuremath{\mathsf{v}}}} % 
+% \newcommand{\utimes}{{\ensuremath{\mathsf{v}}}} %
 % \newcommand{\exp}[1]{  \ensuremath{\mathrm{exp}} \left( {#1} \right) }
 % \newcommand{\span}{ {\ensuremath{\mathrm{span}}} }
