@@ -5,7 +5,11 @@
 %   Added a switch statement (if-else) for which citation package to import. Specifically, if the documentclass is tufte-book, then do not import the `cite' package.
 % -----------------------------------------------------------------------------
 % 17-JUN-2021   :   Amro Al Baali
-%   Removed the `cite' package dependancy and updated BiBlateX package options.
+%   - Removed the `cite' package dependancy and updated BiBlateX package options.
+% -----------------------------------------------------------------------------
+% 18-JUN-2021   :   Amro Al Baali
+%   - Updated biblatex options.
+%   - Updated packed_enum and packed_itemize options.
 % -----------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
@@ -37,22 +41,23 @@
     % Do nothing
 }{
   \RequirePackage[
-      backend=bibtex,
-      bibstyle=ieee,
-      citestyle=numeric-comp, % authoryear-comp
-      doi=false,
-      isbn=false,
-      url=false,
-      language=autocite,
-      sorting=none
+      backend   = bibtex,
+      bibstyle  = ieee,
+      citestyle = numeric-comp, % authoryear-comp
+      doi       = false,
+      isbn      = false,
+      url       = false,
+      language  = autocite,
+      sorting   = none,
+      date      = year
   ]{biblatex} % Bibliography
   \AtEveryBibitem{\clearlist{language}} % clears language
   \AtEveryBibitem{\clearfield{note}}    % clears notes
   % Clear addresses/locations
   \AtEveryCitekey{\clearlist{location}}
   \AtEveryBibitem{\clearlist{location}}
-  \DeclareNameAlias{author}{first-last} % Author names: first-last
-  % \DeclareNameAlias{author}{last-first} % Author names: last-first
+  \DeclareNameAlias{author}{given-family} % Author names: first-last
+  % \DeclareNameAlias{author}{family-given} % Author names: last-first
 }
 \RequirePackage{wrapfig}  % Allows figures and tables to have text around them
 \RequirePackage{setspace}  % \singlespacing{}, \onehalfspacing{}, \doublespacing{}
@@ -90,13 +95,13 @@
 
 % More compact enumerate and itemize environments
 \newenvironment{packed_enum}{
-    \begin{enumerate}
+    \begin{enumerate}[leftmargin=2\parindent]
         \setlength{\itemsep}{1pt}
         \setlength{\parskip}{0pt}
         \setlength{\parsep}{0pt}
     }{\end{enumerate}}
 \newenvironment{packed_itemize}{
-    \begin{itemize}
+    \begin{itemize}[leftmargin=2\parindent]
         \setlength{\itemsep}{1pt}
         \setlength{\parskip}{0pt}
         \setlength{\parsep}{0pt}

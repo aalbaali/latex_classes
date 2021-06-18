@@ -5,6 +5,9 @@
 %       - Changed default chapter color to gray
 %       - Added option to choose chapter color.
 % ----------------------------------------------------------------------------------------
+%   18-Jun-2021     :   Amro Al Baali
+%       - Customized list options.
+% ----------------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-tufte}
@@ -298,3 +301,10 @@
 
 % Make book one-sided
 \let\cleardoublepage\clearpage
+
+% % Set lists indentation
+\setlist{
+  leftmargin=2\parindent, 
+  itemsep=1pt,
+  parsep=0pt
+}
