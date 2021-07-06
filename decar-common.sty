@@ -37,9 +37,9 @@
 
 \RequirePackage{graphicx}
 \RequirePackage{subcaption}
-\@ifclassloaded{tufte-book}{
-    % Do nothing
-}{
+% \@ifclassloaded{tufte-book}{
+%     % Do nothing
+% }{
   \RequirePackage[
       backend   = bibtex,
       bibstyle  = ieee,
@@ -58,7 +58,7 @@
   \AtEveryBibitem{\clearlist{location}}
   \DeclareNameAlias{author}{given-family} % Author names: first-last
   % \DeclareNameAlias{author}{family-given} % Author names: last-first
-}
+% }
 \RequirePackage{wrapfig}  % Allows figures and tables to have text around them
 \RequirePackage{setspace}  % \singlespacing{}, \onehalfspacing{}, \doublespacing{}
 \RequirePackage[printonlyused]{acronym}  % All acronyms are spelt out once fully
