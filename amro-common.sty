@@ -1,45 +1,57 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Change log
-% ----------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 %   18-Nov-2020     :   Amro Al Baali
-%       Added \mbfwhat and \mbswhat
-% ----------------------------------------------------------------------------------------
+%     Add \mbfwhat and \mbswhat
+% ------------------------------------------------------------------------------
 %   22-Nov-2020     :   Amro Al Baali
-%       Removed the \lfoot{} adjustments to allow the package to be used with documents without lfoot
-% ----------------------------------------------------------------------------------------
-%       - Replaced the environments `my<color>Box' with `<color>Box', where <color> is an appropriate color. The old commands are still available
-%       - Replaced `myBlueBoxShaded' with `blueBoxShaded'
-%       - Commented out `mytheoremarg'
-%       - Replaced `my<env>' with `<env>Box', where <env> are environments such as `theorem', `definition', etc. The old commands should still be working.
-% ----------------------------------------------------------------------------------------
-%   23-Nov-2020     :   Amro Al Baali
-%       Made the package more robust by adding checks before `renewcommand'
-% ----------------------------------------------------------------------------------------
+%     Remov the \lfoot{} adjustments to allow the package to be used with
+%     documents without lfoot
+% ------------------------------------------------------------------------------
+%     - Replace the environments `my<color>Box' with `<color>Box', where 
+%       <color> is an appropriate color. The old commands are still available
+%     - Replace `myBlueBoxShaded' with `blueBoxShaded'
+%     - Comment out `mytheoremarg'
+%     - Replace `my<env>' with `<env>Box', where <env> are environments such as
+%        `theorem', `definition', etc. The old commands should still be working.
+% ------------------------------------------------------------------------------
+%   23-Nov-2020     :   Amro Al Baali.
+%     Make the package more robust by adding checks before `renewcommand'
+% ------------------------------------------------------------------------------
 %   25-Nov-2020     :   Amro Al Baali
-%       Removed the optional arguments from the old definition box. That is, replaced
-%           \newenvironment{mydefinition}[1][\unskip]{\begin{definitionBox}}{\end{definitionBox}}
-%       with
-%           \newenvironment{mydefinition}{\begin{definitionBox}}{\end{definitionBox}}
-% ----------------------------------------------------------------------------------------
+%     Remove the optional arguments from the old definition box. That is,
+%     replace
+%       \newenvironment{mydefinition}[1][\unskip]
+%         {\begin{definitionBox}}
+%         {\end{definitionBox}}
+%     with
+%       \newenvironment{mydefinition}{\begin{definitionBox}}{\end{definitionBox}}
+% ------------------------------------------------------------------------------
 %   01-Dec-2020     :   Amro Al Baali
-%       Added inverse CDF function \invcdf
-% ----------------------------------------------------------------------------------------
+%     Add inverse CDF function \invcdf
+% ------------------------------------------------------------------------------
 %   06-Dec-2020     :   Amro Al Baali
-%       - Added checkArgsCB (check arguments and add curly braces)
-%       - Renewed Fourier and Laplace transform commands.
-% ----------------------------------------------------------------------------------------
+%     - Add checkArgsCB (check arguments and add curly braces)
+%     - Renew Fourier and Laplace transform commands.
+% ------------------------------------------------------------------------------
 %   25-Mar-2021     :   Amro Al Baali
-%       - Changed latin shorthands (`e.g.', `i.e.', `etc.') to straight font (not italic)
-% ----------------------------------------------------------------------------------------
+%     - Change latin shorthands (`e.g.', `i.e.', `etc.') to straight font (not
+%       italic)
+% ------------------------------------------------------------------------------
 %   5-Apr-2021     :   Amro Al Baali
-%       - Added RV to kinematics (\dcmrv, \dcmrvtrans, \disprv, etc.)
-%       - Wrapped boxes (blue, black, grey) with floating figure (so it doesn't break when displaying)
-% ----------------------------------------------------------------------------------------
+%     - Add RV to kinematics (\dcmrv, \dcmrvtrans, \disprv, etc.)
+%     - Wrap boxes (blue, black, grey) with floating figure (so it doesn't
+%       break when displaying)
+% ------------------------------------------------------------------------------
 %   19-Apr-2021     :   Amro Al Baali
-%       - Added \mbscheckrv and \mbshatrv
-%       - Added \mbftilderv and \mbstilderv
-% ----------------------------------------------------------------------------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     - Add \mbscheckrv and \mbshatrv
+%     - Add \mbftilderv and \mbstilderv
+% ------------------------------------------------------------------------------
+%   09-Jul-2021     :   Amro Al Baali
+%     - Updat latin shorthands (\eg, \ie, \etc)
+%     - Add shorthand \vs (for vs. ``versus'')
+% ------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{amro-common}
 \RequirePackage{decar-common}
@@ -324,10 +336,10 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{boxMarginGrey}
 
 
 % Latin shorthands (using notation from Forbes and Barfoot)
-\def\eg{{{e.g.}\@}\xspace}
-\def\ie{{i.e.\@}\xspace}
-\def\etc{{etc\@}\xspace} 
-
+\def\eg{e.g.\@\xspace}
+\def\ie{i.e.\@\xspace}
+\def\etc{etc\@ifnextchar{.}{}{.\@\xspace}} 
+\def\vs{vs.}
 %% Spaces and sets
 % Unit sphere
 \newcommand{\usphere}[1]{\ensuremath{S^{#1}}}
