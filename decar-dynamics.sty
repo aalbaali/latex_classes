@@ -1,17 +1,58 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{decar-dynamics}
+\ProvidesPackage{stylesheets/decar_classes/decar-dynamics}
 
-\RequirePackage{decar-common}
+\RequirePackage{stylesheets/decar_classes/decar-common}
 
-%======= Custom math-mode commands ============================================%
+% ====== Custom math-mode commands ========================================== %
 
 % Reference frame
-\newcommand{\rframe}[1]{{\ensuremath{\underrightarrow{\mathcal{F}}_{#1}}}}
+% \newcommand{\rframe}[1]{{\ensuremath{\underrightarrow{\mathcal{F}}_{#1}}}}
+\newcommand{\rframe}[1]{{\ensuremath{{\mathcal{F}}_{#1}}}}
 % Vectrix
 \newcommand{\vectrix}[1]{\ensuremath{\underrightarrow{\boldsymbol{\mathcal{F}}}_{#1}}}
 % Null vectrix
 \newcommand{\nvectrix}{{\ensuremath{\underrightarrow{\boldsymbol{\mathcal{O}}}}}}
 % Time derivatives of physical vectors
+% AA: Physical position with optional derivatives (up to 2 derivatives)
+\NewDocumentCommand{\pos}{ O{} O{} O{}}{
+  \ura{r}^{
+      \ifthenelse{
+        \equal{#1}{}
+        }{}{#1\dispspace}
+      % First derivative
+      \ifthenelse{
+        \equal{#2}{}
+      }{}{\fdot{#2}}
+      % Second derivative
+      \ifthenelse{
+        \equal{#3}{}
+      }{}{\fdot{#3}}
+  }
+}
+% AA: Physical velocity with optional derivative
+\NewDocumentCommand{\vel}{ O{} O{}}{
+  \ura{v}^{
+      \ifthenelse{
+        \equal{#1}{}
+        }{}{#1\dispspace}
+      % First derivative
+      \ifthenelse{
+        \equal{#2}{}
+      }{}{\fdot{#2}}
+  }
+}
+% AA: Physical acceleration
+\NewDocumentCommand{\acc}{ O{} O{}}{
+  \ura{a}^{
+      \ifthenelse{
+        \equal{#1}{}
+        }{}{#1\dispspace}
+      % First derivative
+      \ifthenelse{
+        \equal{#2}{}
+      }{}{\dispspace\fdot{#2}\dispspace}
+  }
+}
 % TODO Why are these such a mess?
 \def\fdota{{\raisebox{-2pt}{\LARGE $\cdot$}}}
 \def\fdotb{{\raisebox{-0.6ex}{\kern0.2ex\raisebox{0.8ex}{\tiny $\hspace*{-1ex}\circ$}}}}
@@ -27,7 +68,7 @@
 % Displacements (r)
 \newcommand{\dispspace}{\,}
 % Basic displacement
-\NewDocumentCommand{\disp}{ O{} O{} }{\mbf{r}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\dispspace} #1 \ifthenelse{\equal{#1}{}}{}{\dispspace}}}
+\NewDocumentCommand{\disp}{ O{} O{}}{\mbf{r}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\dispspace} #1 \ifthenelse{\equal{#1}{}}{}{\dispspace}}}
 % Mean displacement
 \NewDocumentCommand{\dispbar}{ O{} O{}}{\mbfbar{r}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\dispspace} #1 \ifthenelse{\equal{#1}{}}{}{\dispspace}}}
 % Prior displacement

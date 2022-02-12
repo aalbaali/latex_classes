@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{decar-lie}
+\ProvidesPackage{stylesheets/decar_classes/decar-lie}
 
-\RequirePackage{decar-common}
+\RequirePackage{stylesheets/decar_classes/decar-common}
 
 % ====== Custom math-mode commands ========================================== %
 
@@ -61,5 +61,7 @@
 \NewDocumentCommand{\posecheck}{ O{} O{} }{\mbfcheck{T}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\posespace} #1 \ifthenelse{\equal{#1}{}}{}{\posespace}}}
 % Posterior pose
 \NewDocumentCommand{\posehat}{ O{} O{} }{\mbfhat{T}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\posespace} #1 \ifthenelse{\equal{#1}{}}{}{\posespace}}}
+% Tilde
+\NewDocumentCommand{\posetilde}{ O{} O{} }{\mbftilde{T}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\posespace} #1 \ifthenelse{\equal{#1}{}}{}{\posespace}}}
 % Derivative of pose
 \NewDocumentCommand{\posedot}{ O{} O{} }{\mbfdot{T}_{#2}^{\ifthenelse{\equal{#1}{}}{}{\posespace} #1 \ifthenelse{\equal{#1}{}}{}{\posespace}}}
