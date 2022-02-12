@@ -22,3 +22,11 @@ Here are the summarized instructions
 1.  Type `kpsewhich -var-value TEXMFHOME` to get the latex search path. It looks something like `/hom/aalbaali/texmf`. Note that this directory may not exist (may not be created).
 2.  Add your folders (`.cls` and `.sty`) into `/home/aalbaali/texmf/tex/latex/[package-name]/`. Create the necessary directories if necessary.
 3.  From *within* that directory, run `texhash .` (or from anywhere type `texhassh /home/aalbaali/texmf/tex/latex`).
+
+## Verifying the installation
+To verify the installation, run the following command from anywhere on the system
+```bash
+kpsewhich <filename-with-extension>
+# Example:
+#   kpsewhich amro-common.sty
+```
