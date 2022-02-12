@@ -15,6 +15,7 @@ then
   cd $TEXMFHOME/tex/latex
   git clone git@github.com:aalbaali/latex_classes.git
   texhash
+  echo -e "Files successfully installed to \033[96;1m$TEXMFHOME/tex/latex/latex_classes\033[0m"
 else
   echo -e "Files already installed in \033[93;1m$TEXMFHOME/tex/latex/latex_classes\033[0m"
 fi
