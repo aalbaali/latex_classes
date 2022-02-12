@@ -16,6 +16,19 @@ where the stylesheets and classes live inside the `[customPackage]` folder.
 Checkout <https://tex.stackexchange.com/questions/2063/how-can-i-manually-install-a-package-on-miktex-windows> for reference.
 
 # On linux
+
+## Installation script
+The `install.sh` script can be used to install the TeX classes and stylesheets into the latex search path.
+
+To use it, run the following from anywhere on the system
+```bash
+wget -c https://raw.githubusercontent.com/aalbaali/latex_classes/master/install.sh?token=GHSAT0AAAAAABRI2OOT3SC4C7IOHDIQJ5K4YQRPABA -O install_tex.sh
+chmod +x install_tex.sh
+./install_tex.sh
+rm install_tex.sh
+```
+
+## Manually installing
 I followed the instructions from this [link](https://tex.stackexchange.com/questions/1137/where-do-i-place-my-own-sty-or-cls-files-to-make-them-available-to-all-my-te).
 
 Here are the summarized instructions
