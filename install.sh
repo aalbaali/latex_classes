@@ -9,10 +9,12 @@
 TEXMFHOME=$(kpsewhich -var-value TEXMFHOME)
 
 # Clone if repo doesn't exist already
-if [ ! -f $TEXMFHOME/tex/latex/latex_classes ];
+if [[ ! -d $TEXMFHOME/tex/latex/latex_classes ]]
 then
   mkdir -p $TEXMFHOME/tex/latex
   cd $TEXMFHOME/tex/latex
   git clone git@github.com:aalbaali/latex_classes.git
   texhash
-fi;
+else
+  echo -e "Files already installed in \033[93;1m$TEXMFHOME/tex/latex/latex_classes\033[0m"
+fi
