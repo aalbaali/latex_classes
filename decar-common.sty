@@ -1,21 +1,23 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % UPDATE LOG
-% -----------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % 6-NOV-2020   :   Amro Al Baali
-%   Added a switch statement (if-else) for which citation package to import. Specifically, if the documentclass is tufte-book, then do not import the `cite' package.
-% -----------------------------------------------------------------------------
+%   Add a switch statement (if-else) for which citation package to import.
+%   Specifically, if the documentclass is tufte-book, then do not import the
+%   `cite' package.
+% ------------------------------------------------------------------------------
 % 17-JUN-2021   :   Amro Al Baali
-%   - Removed the `cite' package dependancy and updated BiBlateX package options.
-% -----------------------------------------------------------------------------
+%   - Remove the `cite' package dependancy and updated BiBlateX package options.
+% ------------------------------------------------------------------------------
 % 18-JUN-2021   :   Amro Al Baali
-%   - Updated biblatex options.
-%   - Updated packed_enum and packed_itemize options.
-% -----------------------------------------------------------------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   - Update biblatex options.
+%   - Update packed_enum and packed_itemize options.
+% ------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{stylesheets/decar_classes/decar-common}
+\ProvidesPackage{decar-common}
 
-% ====== Dependencies ======================================================= %
+%======= Dependencies =========================================================%
 % Custom commands in this package need these packages
 
 \RequirePackage{xspace}  % \xspace{} command

@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{amro-wsd}[Amro WSD Template]
-% Diclosure: inherited from DECAR WSD.
+\ProvidesClass{simple-article}[Simple article]
+% Diclosure: I inherited this from DECAR WSD.
 \LoadClass[letterpaper, 11pt]{article}
 
 \RequirePackage{times}  % TODO Obselete package. Find replacement
@@ -41,8 +41,7 @@
 \def\address#1{\gdef\@address{#1}}
 
 % Default address
-\address{\small{Department of Mechanical Engineering, McGill University} \\
-\small{817 Sherbrooke Street West, Montreal QC H3A 0C3}}
+\address{}
 
 \makeatletter
 \def\@maketitle{%
@@ -79,5 +78,5 @@
 \titlespacing*{\subsubsection}{0pt}{12pt}{0pt}
 
 % Default document title
-\title{Weekly Summary Document}
+\title{}
 \date{\today{}}
