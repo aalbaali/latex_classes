@@ -13,7 +13,7 @@ if [[ ! -d $TEXMFHOME/tex/latex/latex_classes ]]
 then
   mkdir -p $TEXMFHOME/tex/latex
   cd $TEXMFHOME/tex/latex
-  git clone git@github.com:aalbaali/latex_classes.git
+  git clone https://github.com/aalbaali/latex_classes.git
   texhash
   echo -e "Files successfully installed to \033[96;1m$TEXMFHOME/tex/latex/latex_classes\033[0m"
 else
